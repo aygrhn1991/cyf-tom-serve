@@ -7,7 +7,6 @@ import com.cyf.tom.suit.util.UtilPageOfJava;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +34,11 @@ public class HomeCtrl {
     }
 
     //region 页面
+    @RequestMapping("/consult")
+    public String consult() {
+        return "home/consult";
+    }
+
     @RequestMapping(value = {"/index"})
     public String index(Model model) {
         //轮播
@@ -93,7 +97,7 @@ public class HomeCtrl {
         model.addAttribute("page", new UtilPageOfJava(page, limit, total, navigatePages));
         //布局内容
         this.concatLayoutData(model);
-        return "home/category";
+        return "consult";
     }
 
     @RequestMapping("/gallery/{id}")
