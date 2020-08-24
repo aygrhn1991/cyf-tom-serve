@@ -1,0 +1,48 @@
+<form>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" ng-model="search.string1">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" ng-model="search.string2">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn" ng-click="get()">搜索</button>
+            <button class="layui-btn" ng-click="reset()">重置</button>
+        </div>
+    </div>
+</form>
+<table class="layui-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>邮箱</th>
+        <th>意向城市</th>
+        <th>咨询留言</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="d in data">
+        <td ng-bind="d.id"></td>
+        <td ng-bind="d.name"></td>
+        <td ng-bind="d.phone"></td>
+        <td ng-bind="d.email"></td>
+        <td ng-bind="d.city"></td>
+        <td ng-bind="d.message"></td>
+        <td>
+            <button class="layui-btn layui-btn-xs" ng-if="d.state==0" ng-click="setState(d)">已跟进</button>
+            <button class="layui-btn layui-btn-xs" ng-click="delete(d)">删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div id="page"></div>
