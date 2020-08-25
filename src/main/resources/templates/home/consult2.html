@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="home/layout">
+<div th:fragment="content">
+    <link href="http://www.hellotom-edu.com/Public/now/css/style.css" rel="stylesheet"/>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('consultCtrl', function ($scope, $http) {
+            $scope.model = {};
+            $scope.reset = function () {
+                $scope.model = {};
+            };
+            $scope.doSubmit = function () {
+                if (Util.isNull($scope.model.name) ||
+                    Util.isNull($scope.model.phone) ||
+                    Util.isNull($scope.model.city) ||
+                    Util.isNull($scope.model.message)) {
+                    alert("请完善您的咨询信息");
+                    return;
+                }
+                if ($scope.model.phone.length != 11) {
+                    alert("请输入正确的手机号以方便我们联系您");
+                    return;
+                }
+                $http.post(`/home/addConsult`, $scope.model).success(function (data) {
+                    alert(data.message);
+                    if (data.success) {
+                        $scope.model = {};
+                    }
+                })
+            }
+        });
+    </script>
+    <div ng-app="app" ng-controller="consultCtrl">
+        <div class="wrapper pc">
+            <div class="top clearfix">
+                <div class="logo">
+                    <a>
+                        <h1><img src="http://www.hellotom-edu.com/Uploads/20190329/5c9dd7d99c03a.png" alt="汤姆客少儿英语培训"/></h1>
+                    </a>
+                </div>
+                <span class="hotline">
+                <img src="http://www.hellotom-edu.com/Public/new/images/dianhua.png">
+                <em>全国招生热线：</em>
+                <span>400-007-8609 </span>
+            <br>
+            <span class="hotline1">
+                    <img src="http://www.hellotom-edu.com/Public/new/images/dianhua.png">
+                    <em>全国加盟热线：</em>
+                    <span>400-681-9993 </span>
+            </span>
+            </span>
+                <div style="float:right;">
+                    <a class="l-logo l1"> 深度合作伙伴 </a>
+                    <a class="l-logo l2"> 上股中心挂牌机构 </a>
+                </div>
+            </div>
+        </div>
+        <div class="flash01">
+            <div class="qunar slideBox" style="margin:0 auto">
+                <div class="e_pic_wrap" style="position:relative;">
+                    <div><img src="http://www.hellotom-edu.com/Uploads/20200715/5f0e7968a1494.jpg" alt="汤姆客少儿英语" style="width:100%"></div>
+                    <div class="jmbox w1200">
+                        <div class="jmxx">
+                            <div class="jmtitle">加盟申请</div>
+                            <form action="">
+                                <div class="jmcont clearfix">
+                                    <input type="text" placeholder="请输入您的姓名" ng-model="model.name">
+                                    <input type="text" placeholder="请输入您的电话" ng-model="model.phone">
+                                    <input type="text" placeholder="请输入您的电子邮箱" ng-model="model.email">
+                                    <input type="text" placeholder="加盟意向城市" ng-model="model.city">
+                                    <textarea placeholder="请输入您所关心的问题" ng-model="model.message"></textarea>
+                                    <div class="subBtn clearfix">
+                                        <button type="reset" class="reset" ng-click="reset()">重置</button>
+                                        <button type="button" class="submit" ng-click="doSubmit()">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main" style="background: #fff;">
+            <div style="text-align:center;padding-top:50px" id="aasaa"><img src="http://www.hellotom-edu.com/Public/now/images/tom-qgzx1/tom-qgzx1_13.png"/></div>
+            <div class="cityConts">
+                <div class="cityList clearfix w1200">
+                    <div class="citySelect">
+                        <ul class="btnUl">
+                            <li><a>重庆</a></li>
+                            <li><a>北京</a></li>
+                            <li><a>天津</a></li>
+                            <li><a>河北</a></li>
+                            <li><a>山东</a></li>
+                            <li><a>江苏</a></li>
+                            <li><a>浙江</a></li>
+                            <li><a>吉林</a></li>
+                            <li><a>广东</a></li>
+                            <li><a>辽宁</a></li>
+                            <li><a>内蒙古</a></li>
+                            <li><a>黑龙江</a></li>
+                            <li><a>四川</a></li>
+                            <li><a>山西</a></li>
+                            <li><a>福建</a></li>
+                            <li><a>安徽</a></li>
+                            <li><a>江西</a></li>
+                            <li><a>河南</a></li>
+                            <li><a>湖北</a></li>
+                            <li><a>湖南</a></li>
+                            <li><a>贵州</a></li>
+                            <li><a>海南</a></li>
+                            <li><a>陕西</a></li>
+                            <li><a>甘肃</a></li>
+                            <li><a>新疆</a></li>
+                            <li><a>青海</a></li>
+                            <li><a>云南</a></li>
+                            <li><a>宁夏</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
